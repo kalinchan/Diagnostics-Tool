@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1710939692134
+Build-Jdk-Spec: 1.8
+Bundle-License: https://raw.githubusercontent.com/payara/Payara/master/L
+ ICENSE.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Payara Diagnostics Tool CLI Commands
+Bundle-SymbolicName: fish.payara.extras.payara-diagnostics-tool.cli
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin 5.1.9
+Import-Package: com.fasterxml.jackson.core;version="[2.14,3)",com.faster
+ xml.jackson.databind;version="[2.14,3)",com.sun.enterprise.admin.cli;ve
+ rsion="[5.36,6)",com.sun.enterprise.admin.cli.remote;version="[5.36,6)"
+ ,com.sun.enterprise.admin.servermgmt.cli,com.sun.enterprise.config.serv
+ erbeans;version="[5.36,6)",fish.payara.enterprise.config.serverbeans;ve
+ rsion="[5.36,6)",javax.inject;version="[1.0,2)",okhttp3,org.glassfish.a
+ pi;version="[5.36,6)",org.glassfish.api.admin;version="[5.36,6)",org.gl
+ assfish.api.logging;version="[5.36,6)",org.glassfish.hk2.api;version="[
+ 2.6,3)",org.jvnet.hk2.annotations;version="[2.6,3)",org.jvnet.hk2.confi
+ g;version="[5.36,6)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-6.3.1.202206071316

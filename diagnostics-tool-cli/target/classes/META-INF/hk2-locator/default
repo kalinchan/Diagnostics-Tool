@@ -1,0 +1,8 @@
+#
+# Generated on Wed Mar 20 13:01:32 GMT 2024 by hk2-inhabitant-generator
+#
+
+[fish.payara.extras.diagnostics.asadmin.CollectAsadmin]
+contract={com.sun.enterprise.admin.cli.CLICommand}
+name=collect-diagnostics
+

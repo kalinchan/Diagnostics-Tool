@@ -44,12 +44,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fish.payara.extras</groupId>
-    <artifactId>payara-diagnostics-tool</artifactId>
+    <groupId>fish.payara.extras.payara-diagnostics-tool</groupId>
+    <artifactId>payara-diagnostics-tool-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>glassfish-jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>payara-diagnostics-tool</name>
+    <name>Payara Diagnostics Tool Parent</name>
+
+    <modules>
+        <module>diagnostics-tool-admin</module>
+        <module>diagnostics-tool-cli</module>
+    </modules>
 
     <licenses>
         <license>
@@ -65,6 +70,9 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <payara.version>5.36.0</payara.version>
+        <jackson.databind.version>2.14.1</jackson.databind.version>
+        <okhttp.version>4.12.0</okhttp.version>
+        <junit.version>4.13.2</junit.version>
 
         <javadoc.skip>true</javadoc.skip>
         <source.skip>true</source.skip>
@@ -96,33 +104,34 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>fish.payara.server.internal.admin</groupId>
-            <artifactId>server-mgmt</artifactId>
-            <version>${payara.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.14.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.12.0</version>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>fish.payara.server.internal.admin</groupId>
+                <artifactId>server-mgmt</artifactId>
+                <version>${payara.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.databind.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
-        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.glassfish.build</groupId>
@@ -212,33 +221,8 @@
                     <groupId>org.glassfish.build</groupId>
                     <artifactId>command-security-maven-plugin</artifactId>
                     <version>1.0.13</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.3.0</version>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                     <configuration>
-                        <archive>
-                            <manifest>
-                                <mainClass>fish.payara.extras.diagnostics.App</mainClass>
-                                <addClasspath>true</addClasspath>
-                                <classpathLayoutType>custom</classpathLayoutType>
-                                <customClasspathLayout>${artifact.artifactId}.${artifact.extension}
-                                </customClasspathLayout>
-                            </manifest>
-                            <manifestFile>${project.build.directory}/classes/META-INF/MANIFEST.MF</manifestFile>
-                            <manifestEntries>
-                                <Implementation-Version>${project.version}</Implementation-Version>
-                            </manifestEntries>
-                        </archive>
+                        <isFailureFatal>false</isFailureFatal>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -259,7 +243,7 @@
                             jakarta
                         </excludeGroupIds>
                         <excludeTransitive>true</excludeTransitive>
-                        <outputDirectory>${project.build.directory}</outputDirectory>
+                        <outputDirectory>../target</outputDirectory>
                     </configuration>
                 </plugin>
             </plugins>

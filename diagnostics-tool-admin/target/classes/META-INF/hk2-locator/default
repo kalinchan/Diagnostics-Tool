@@ -1,0 +1,12 @@
+#
+# Generated on Wed Mar 20 13:01:30 GMT 2024 by hk2-inhabitant-generator
+#
+
+[fish.payara.extras.diagnostics.admin.GenerateHeapDumpCommand]
+contract={org.glassfish.api.admin.AdminCommand}
+name=generate-heap-dump
+
+[fish.payara.extras.diagnostics.admin.GetDomainXmlCommand]
+contract={org.glassfish.api.admin.AdminCommand}
+name=get-domain-xml
+
