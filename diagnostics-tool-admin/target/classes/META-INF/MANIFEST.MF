@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1710939690024
+Bnd-LastModified: 1710949465518
 Build-Jdk-Spec: 1.8
 Bundle-License: https://raw.githubusercontent.com/payara/Payara/master/L
  ICENSE.txt
@@ -7,12 +7,29 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Payara Diagnostics Tool Admin Commands
 Bundle-SymbolicName: fish.payara.extras.payara-diagnostics-tool.admin
 Bundle-Version: 1.0.0.SNAPSHOT
+Class-Path: server-mgmt.jar common-util.jar hk2-core.jar hk2-locator.jar
+  jakarta.inject.jar aopalliance-repackaged.jar jakarta.annotation-api.j
+ ar javassist.jar hk2-utils.jar glassfish-api.jar scattered-archive-api.
+ jar hk2-runlevel.jar nucleus-grizzly-all.jar grizzly-framework.jar griz
+ zly-portunif.jar grizzly-http.jar grizzly-http2.jar grizzly-http-server
+ .jar tls-sni.jar grizzly-config.jar management-api.jar glassfish-corba-
+ omgapi.jar admin-util.jar hk2.jar hk2-api.jar class-model.jar asm.jar a
+ sm-analysis.jar asm-commons.jar asm-tree.jar asm-util.jar config-api.ja
+ r microprofile-config-api.jar internal-api.jar hk2-config.jar tiger-typ
+ es.jar hibernate-validator.jar jboss-logging.jar classmate.jar jakarta.
+ validation-api.jar config-types.jar payara-api.jar security-connectors-
+ api.jar security-services.jar security.jar ssl-impl.jar deployment-comm
+ on.jar ldapbp-repackaged.jar gmbal.jar pfl-basic.jar pfl-tf.jar pfl-asm
+ .jar pfl-dynamic.jar pfl-basic-tools.jar pfl-tf-tools.jar jackson-annot
+ ations.jar jackson-core.jar jackson-module-jaxb-annotations.jar jakarta
+ .json-api.jar admin-cli.jar mimepull.jar jakarta.json.jar launcher.jar 
+ logging.jar simple-glassfish-api.jar jline.jar jakarta.xml.bind-api.jar
+  jakarta.activation-api.jar jaxb-osgi.jar logging-annotation-processor.
+ jar
 Created-By: Apache Maven Bundle Plugin 5.1.9
-Import-Package: com.sun.enterprise.universal.glassfish;version="[5.36,6)
- ",com.sun.enterprise.universal.process;version="[5.36,6)",com.sun.enter
- prise.util;version="[5.36,6)",javax.inject;version="[1.0,2)",org.glassf
- ish.api;version="[5.36,6)",org.glassfish.api.admin;version="[5.36,6)",o
- rg.glassfish.config.support;version="[5.36,6)",org.glassfish.hk2.api;ve
- rsion="[2.6,3)",org.jvnet.hk2.annotations;version="[2.6,3)"
+Import-Package: javax.inject;version="[1.0,2)",org.glassfish.api;version
+ ="[5.36,6)",org.glassfish.api.admin;version="[5.36,6)",org.glassfish.co
+ nfig.support;version="[5.36,6)",org.glassfish.hk2.api;version="[2.6,3)"
+ ,org.jvnet.hk2.annotations;version="[2.6,3)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Tool: Bnd-6.3.1.202206071316
