@@ -321,9 +321,19 @@ public class CollectorService {
                 activeCollectors.add(new DomainXmlCollector(domainXmlPath));
             }
 
-            if (serverLogs || accessLogs || notificationLogs) {
-                Path domainLogPath = Paths.get((String) parameterMap.get(LOGS_PATH));
-                activeCollectors.add(new LogCollector(domainLogPath, accessLogs,notificationLogs,serverLogs));
+            if (serverLogs) {
+                Path serverLogPath = Paths.get((String) parameterMap.get(LOGS_PATH));
+                activeCollectors.add(new LogCollector(serverLogPath, "server.log"));
+            }
+
+            if (accessLogs) {
+                Path accessLogPath = Paths.get((String) parameterMap.get(LOGS_PATH), "access");
+                activeCollectors.add(new LogCollector(accessLogPath, "access_log"));
+            }
+
+            if (notificationLogs) {
+                Path notificationLogPath = Paths.get((String) parameterMap.get(LOGS_PATH));
+                activeCollectors.add(new LogCollector(notificationLogPath, "notification.log"));
             }
 
             boolean correctDomainRunning = correctDomainRunning();
@@ -380,8 +390,18 @@ public class CollectorService {
         if (domainXml) {
             activeCollectors.add(new DomainXmlCollector(Paths.get(instanceRoot, "config", "domain.xml"), target, null));
         }
+
+        Path logsPath = Paths.get(instanceRoot, "logs");
         if (serverLogs) {
-            activeCollectors.add(new LogCollector(Paths.get(instanceRoot, "serverLogs"), target));
+            activeCollectors.add(new LogCollector(logsPath, target, "server.log"));
+        }
+
+        if (accessLogs) {
+            activeCollectors.add(new LogCollector(Paths.get(logsPath.toString(), "access"), target, "access_log"));
+        }
+
+        if (notificationLogs) {
+            activeCollectors.add(new LogCollector(logsPath, target, "notification.log"));
         }
 
         if (jvmReport) {
@@ -403,8 +423,18 @@ public class CollectorService {
             if (domainXml) {
                 activeCollectors.add(new DomainXmlCollector(Paths.get(domainUtil.getNodePaths().get(server.getNodeRef()).toString(), server.getName(), "config", "domain.xml"), server.getName(), finalDirSuffix));
             }
+            Path logPath = Paths.get(domainUtil.getNodePaths().get(server.getNodeRef()).toString(), server.getName(), "logs");
+
             if (serverLogs) {
-                activeCollectors.add(new LogCollector(Paths.get(domainUtil.getNodePaths().get(server.getNodeRef()).toString(), server.getName(), "serverLogs"), server.getName(), finalDirSuffix));
+                activeCollectors.add(new LogCollector(logPath, server.getName(), finalDirSuffix, "server.log"));
+            }
+
+            if (accessLogs) {
+                activeCollectors.add(new LogCollector(Paths.get(logPath.toString(), "access"), server.getName(), finalDirSuffix, "access_log"));
+            }
+
+            if (notificationLogs) {
+                activeCollectors.add(new LogCollector(logPath, server.getName(), finalDirSuffix, "notification.log"));
             }
 
             if (jvmReport) {
